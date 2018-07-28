@@ -1,0 +1,68 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<enter><wait30>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait>",
+        "<tab><wait><enter><wait5>",
+        "<up><wait><up><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait>",
+        "<enter><wait>",
+        "<tab><wait><enter><wait>",
+        "<enter><wait>",
+        "<tab><wait><enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<tab><wait><tab><wait><up><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>",
+        "password<tab><wait>password<tab><wait><tab><wait><tab><wait><tab><wait><enter><wait5>",
+        "<up><wait><spacebar><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait>",
+        "<enter><wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "RedHat",
+      "hard_drive_interface": "ide",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "b62f43f67c68766c1cfef8fb9dbd4748",
+      "iso_checksum_type": "md5",
+      "iso_url": "https://archive.fedoraproject.org/pub/archive/fedora/linux/core/1/i386/iso/dvd-iso/yarrow-i386-dvd.iso",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{ user `template` }}"
+    }
+  ],
+  "variables": {
+    "cpus": "1",
+    "disk_size": "8192",
+    "headless": "",
+    "memory": "1024",
+    "template": "yarrow"
+  }
+}
